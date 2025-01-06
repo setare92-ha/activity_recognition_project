@@ -173,7 +173,6 @@ cython_debug/
 # Raw Data
 /data
 /literature
-/images
 
 # junk
 /.ipynb_checkpoints
