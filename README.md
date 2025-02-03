@@ -1,4 +1,4 @@
-# Human Activity Recognition (HAR) Using Neural Networks
+# WIP: Human Activity Recognition (HAR) Using Neural Networks
 <img src="./images/header_nn_signal.jpg" 
     Width="1000">
 
