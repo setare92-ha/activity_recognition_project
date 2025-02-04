@@ -1,4 +1,4 @@
-# WIP: Human Activity Recognition (HAR) Using Neural Networks
+# Human Activity Recognition (HAR) Using Neural Networks
 <img src="./images/header_nn_signal.jpg" 
     Width="1000">
 
@@ -107,6 +107,4 @@ The kernel size was chosen based on the maximum period present in the time-serie
     │       pipeline.png
     │       walking_sample.png
     │
-    ├───literature
-    │       sensorKDD-2010.pdf
-    │
+    ├───presentation
