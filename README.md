@@ -41,10 +41,16 @@ In this section, we explain the modeling procedure for the baseline logistic reg
 We use the feature-engineered data to train and cross-validate a multinomial logistic regression model to reproduce the authors' work in the original paper. Since we have class imbalance, we use the weighted average F1-score as the evaluation metric. The model has a weighted F1-score of 0.7. 
 
 ### 3.2. 1-D CNN model
+Cleaning the data and training the 1D-CNN model consists of several stages (see Fig. 3):
+1. As mentioned before, the data is imbalanced. We need to account for class imbalance otherwise the neural network model will have a bias towards the majory classes. Here, class weights are obtained and fed to the model during the fit stage in order to account for this imbalance. 
+2. A train-test split in this case must not be done in the conventional manner. In the conventional case, the data is shuffled randomly. However, with time-series data, including data from later time stamps in training set while predicting for prior time stamps, will result in *look-ahead bias*. In addition, including data from the same user in both train and test may cause leakage. We control for both of these issues when splitting data for train, test and validation.   
+3. The data needs to be scaled since neural networks are sensitive to scaling. Since we're using cross-validation, the scaling must be done on each training fold before data is processed for windowing. 
+4. The time-series data in this format will not be usable by the model. We will use 5-second intervals to window the data and we will use an overlap of 2.5 seconds between windows. In order to attain high-fidelity windows, windowing is done per user per activity; the windows is then concatenated. Since measurements from the same user might have been done over several sessions and the same activity might have been repeated by the user (for example, the user may have been asked to walk, jog and then walk again), we need to filter the windows with large time stamp gaps. This is done by a special check in the windowing function.
 
 <img src="./images/pipeline.png" 
-    Width="1000">
-*Figure 1.* Diagram showing the pipeline for building and training the 1d-CNN model.
+    Width="600">
+*Figure 3.* Diagram showing the pipeline for building and training the 1d-CNN model.
+
 
 ## 3. Results and Recommendations
 - We have built and trained a 1D-CNN model that can perform activity recognition in six categorites (walking, jogging, sitting, standing, going up and down the stairs) given raw accelerometer data. The overall cross-validated accuracy of the model is 81%. Accuracy on unseen test data is 84%. The weighted average F1-score is also 83%.
