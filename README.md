@@ -15,7 +15,7 @@ There are two sets of data involved in this study:
 This is the raw data set. The data has **1098208 entries** and **3 features** (the three acceleration components). The **sampling frequency** is **20 Hz** (see Fig.1 for a 5-second sample).
 
 <img src="./images/walking_sample.png" 
-    Width="500">
+    Width="1000">
 
 *Figure 1.* A 10-second sample of time-series data for the activity of *walking* recorded for a subject.
 
@@ -35,12 +35,13 @@ The authors of the original paper [Kwapisz et al., 2010](https://www.cis.fordham
 In this work, the transformed data set is used to reproduce the work of the authors for a baseline logistic regression model. 
 
 ## 3. Machine Learning Models
+In this section, we explain the modeling procedure for the baseline logistic regression model as well as the neural networks model. 
 
 ### 3.1. Benchmark logistic regression model
-
-
+We use the feature-engineered data to train and cross-validate a multinomial logistic regression model to reproduce the authors' work in the original paper. Since we have class imbalance, we use the weighted average F1-score as the evaluation metric. The model has a weighted F1-score of 0.7. 
 
 ### 3.2. 1-D CNN model
+
 <img src="./images/pipeline.jpg" 
     Width="1000">
 *Figure 1.* Diagram showing the pipeline for building and training the 1d-CNN model.
