@@ -16,12 +16,14 @@ This is the raw data set. The data has **1098208 entries** and **3 features** (t
 
 <img src="./images/walking_sample.png" 
     Width="500">
+
 *Figure 1.* A 10-second sample of time-series data for the activity of *walking* recorded for a subject.
 
 The data is imbalanced - ranging from 38% in the walking category while only 4% in the standing category (see Fig. 2). We need to balance the data before using it for training a neural networks model.
 
 <img src="./images/bar_chart_classes.png" 
     Width="500">
+
 *Figure 2.* Normalized distribution of raw accelerometer data among classes. 
 
 We will use the raw time-series dataset to train a one-dimensional Convolutional Neural Network (1-D CNN) model.
