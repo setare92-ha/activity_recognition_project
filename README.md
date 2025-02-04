@@ -10,7 +10,7 @@ This project focuses on HAR using [data](https://www.cis.fordham.edu/wisdm/datas
 This work first reproduces the results of [Kwapisz et al., 2010](https://www.cis.fordham.edu/wisdm/includes/files/sensorKDD-2010.pdf) for one of the conventional classification methods they studied. We will then show that we can improve the accuracy of HAR algorithm by using neural networks. 
 ## 2. Data Understanding and Analysis
 There are two sets of data involved in this study:
-### 2.1. Raw time-series data:
+### 2.1. Raw time-series data
 
 This is the raw data set. The data has **1098208 entries** and **3 features** (the three acceleration components). The **sampling frequency** is **20 Hz** (see Fig.1 for a 5-second sample).
 
@@ -26,7 +26,7 @@ The data is imbalanced - ranging from 38% in the walking category while only 4% 
 
 We will use the raw time-series dataset to train a one-dimensional Convolutional Neural Network (1-D CNN) model.
 
-### 2.2. Transformed (feature-engineered) data:
+### 2.2. Transformed (feature-engineered) data
 
 The authors of the original paper [Kwapisz et al., 2010](https://www.cis.fordham.edu/wisdm/includes/files/sensorKDD-2010.pdf) used the raw data set to extract relevant temporal characteristics of the signals in 10-second windows through feature extraction techniques. This was necessary since classical classification models (such as logistic regression) cannot be trained on raw time-series data. This transformed data set consists of **~5000** entries and **43 features**. 
 
