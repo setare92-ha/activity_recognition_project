@@ -88,7 +88,7 @@ The kernel size was chosen based on the maximum period present in the time-serie
 ## 4. Limitations and Next Steps
 - To imrpove the performance of the model further, one can consider unifying some of the classes that have similarly inherent temporal properties (such as sitting and standing or as it was mentioned in the previous section, climbing up and down stairs). This is expected to improve the performance of the model due to two reasons: (1) It is well established that as the number of classes increase, the model will need more training data to do a good job at classification. Reducing the number of classes will reduce the amount of data needed for the model to perform ideally (not overfit) such that the present amount of data may be more ideal. (2) Combining buckets for classes that have similar inherent temporal patterns will make the model struggle less to distinguish between them, improving accuracy across classes.
 - The model is a general-population model and is not personalized. Therefore, it is expected to underperform for individuals whose footstep pace is not close to average as well as individuals who may have difficulty climbing up and down the stairs (e.g. seniors). It may be worth to cluster the population first based on walking/jogging pace, average ascent/descent times, age, and gender. If distinct clustering patterns emerge, a separate model can be built and trained for each population segment.
-- Tuning
+- Limited manual hyperparameter tuning was done in this work to get a model with good performance. Further tuning can be considered to obtain better performance.
 
 ## 5. Resources
 - Data: [Link](https://www.cis.fordham.edu/wisdm/dataset.php)
