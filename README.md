@@ -5,13 +5,47 @@
 ## 1. Business Understanding
 Human activity recognition (HAR) has applications in a wide range of areas. In healthcare and rehabilitation, HAR can help the activity levels of indivudals and elderly adults, detect falls or identify unusual patterns that may indicate health issues. Within the wearable technology sector, fitness and sports, it can help classify activities to calculate metrics such as calories or sleep quality index. 
 
-This project focuses on HAR using [data](https://www.cis.fordham.edu/wisdm/dataset.php) collected by the Wireless Sensor Data Mining (WISDM) Lab. The dataset includes labeled accelerometer data from 29 users as they perform six different daily activities: walking, jogging, ascending/descending stairs, sitting and standing. The interested reader is referred to [Kwapisz et al., 2010](https://www.cis.fordham.edu/wisdm/includes/files/sensorKDD-2010.pdf) for more information on the methods of data collection and the primary classification methods used. In the original work, 43 features were extracted from the time series data and three classification methods (decision trees, logistic regression and multilayer perceptron) were used to classify the activities. None of the three outperformed the other two in terms of accuracy for all activity categories. However, the multilayer perceptron did the best overall. It was shown that all algorithms struggle to distinguish ascending stairs from descending stairs such that if the two are combined into one one type of activity, the performance of all algorithms improve. 
+This project focuses on HAR using [data](https://www.cis.fordham.edu/wisdm/dataset.php) collected by the Wireless Sensor Data Mining (WISDM) Lab. The dataset includes labeled accelerometer data from **29 users** as they perform **six different daily activities**: *walking, jogging, ascending/descending stairs, sitting and standing*. The interested reader is referred to [Kwapisz et al., 2010](https://www.cis.fordham.edu/wisdm/includes/files/sensorKDD-2010.pdf) for more information on the methods of data collection and the primary classification methods used. In the original work, 43 features were extracted from the time series data and three classification methods (decision trees, logistic regression and multilayer perceptron) were used to classify the activities. None of the three outperformed the other two in terms of accuracy for all activity categories. However, the multilayer perceptron did the best overall. It was shown that all algorithms struggle to distinguish ascending stairs from descending stairs such that if the two are combined into one one type of activity, the performance of all algorithms improve. 
 
 This work first reproduces the results of [Kwapisz et al., 2010](https://www.cis.fordham.edu/wisdm/includes/files/sensorKDD-2010.pdf) for one of the conventional classification methods they studied. We will then show that we can improve the accuracy of HAR algorithm by using neural networks. 
 ## 2. Data Understanding and Analysis
+There are two sets of data involved in this study:
+1. **Raw time-series data:** 
+
+This is the raw data set. The data has **1098208 entries** and **3 features** (the three acceleration components). The **sampling frequency** is **20 Hz** (see Fig.1 for a 5-second sample).
+
+<img src="./images/walking_sample.png" 
+    Width="500">
+*Figure 1.* A 10-second sample of time-series data for the activity of *walking* recorded for a subject.
+
+The data is imbalanced - ranging from 38% in the walking category while only 4% in the standing category (see Fig. 2). We need to balance the data before using it for training a neural networks model.
+
+<img src="./images/bar_chart_classes.png" 
+    Width="500">
+*Figure 2.* Normalized distribution of raw accelerometer data among classes. 
+
+We will use the raw time-series dataset to train a one-dimensional Convolutional Neural Network (1-D CNN) model.
+
+2. **Transformed (feature-engineered) data:** 
+
+The authors of the original paper [Kwapisz et al., 2010](https://www.cis.fordham.edu/wisdm/includes/files/sensorKDD-2010.pdf) used the raw data set to extract relevant temporal characteristics of the signals in 10-second windows through feature extraction techniques. This was necessary since classical classification models (such as logistic regression) cannot be trained on raw time-series data. This transformed data set consists of **~5000** entries and **43 features**. 
+
+In this work, the transformed data set is used to reproduce the work of the authors for a baseline logistic regression model. 
+
+## 3. Machine Learning Models
+
+### 3.1. Benchmark logistic regression model
+
+
+
+### 3.2. 1-D CNN model
+<img src="./images/pipeline.jpg" 
+    Width="1000">
+*Figure 1.* Diagram showing the pipeline for building and training the 1d-CNN model.
 
 ## 3. Results and Recommendations
 - We have built and trained a 1D-CNN model that can perform activity recognition in six categorites (walking, jogging, sitting, standing, going up and down the stairs) given raw accelerometer data. The overall cross-validated accuracy of the model is 81%. Accuracy on unseen test data is 84%. The weighted average F1-score is also 83%.
+
 - The model was developed with minimal data preprocessing and/or hectic feature extraction. This is an advantage over classical classification models where time series data has to go through extensive and time-consuming feature extraction processes before it can be used as training data for the model. 
 - The model's performance (weighted F1-score) improved from that of the logistic regression model reproduced at the beginning of the work by 13% (83% for 1d-cnn vs. 70% for logistic regression). Given that minimal feature engineering was required to develop this model, we can conclude that it's the better model to consider deploying (unless a smaller-footprint model at considerably lower accuracy is preferred). 
 - The fact that a simple logistic regression model is able to have a decent performance considering a complex task such as activity recognition, proves that we should always start with simpler, more interpretable models and only move to more complex ones when they cannot get to the performance level we desire.
