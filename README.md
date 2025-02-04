@@ -42,7 +42,7 @@ We use the feature-engineered data to train and cross-validate a multinomial log
 
 ### 3.2. 1-D CNN model
 
-<img src="./images/pipeline.jpg" 
+<img src="./images/pipeline.png" 
     Width="1000">
 *Figure 1.* Diagram showing the pipeline for building and training the 1d-CNN model.
 
