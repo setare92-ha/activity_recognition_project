@@ -52,7 +52,7 @@ Cleaning the data and training the 1D-CNN model consists of several stages (see 
 
 
 <p align="center"><img src="./images/train_test_split.png" 
-    Width="600">
+    Width="500">
 
 *Figure 4.* Normalized ratio of classes for train and test sets. 
 
@@ -92,7 +92,7 @@ The kernel size was chosen based on the maximum period present in the time-serie
 *Figure 5.* Monitoring the model through cross-validation. Left: comparison of class representation between train and validation folds. Right: evolution of train and validation loss during training. 
 
 <p align="center"><img src="./images/1d_cnn_confusion_mat.png" 
-    Width="600">
+    Width="500">
 
 *Figure 6.* Confusion matrix for the final model. 
 
