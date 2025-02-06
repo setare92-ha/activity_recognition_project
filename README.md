@@ -89,7 +89,7 @@ The kernel size was chosen based on the maximum period present in the time-serie
 <p align="center"><img src="./images/sample_train_validation_loss.png" 
     Width="600">
 
-*Figure 5.* Monitoring the model through cross-validation. Left: comparison of class representation between train and validation folds. Right: evolution of train and validation loss during training. 
+*Figure 5.* Monitoring the model through cross-validation. Left: comparison of class representation between train and validation folds. Classes 0 to 5 show *walking, jogging, upstairs, downstairs, sitting and standing*, respectively. Right: evolution of train and validation loss during training. 
 
 <p align="center"><img src="./images/1d_cnn_confusion_mat.png" 
     Width="500">
@@ -101,8 +101,9 @@ The kernel size was chosen based on the maximum period present in the time-serie
 
 - The model was developed with **minimal data preprocessing** and did not involve hectic feature extraction. This is an **advantage over classical classification models** where time series data has to go through extensive and time-consuming feature extraction processes before it can be used as training data for the model. 
 - **The model's performance (weighted F1-score) improved from that of the logistic regression model by 13%** (83% for 1d-cnn vs. 70% for logistic regression). Given that minimal feature engineering was required to develop this model, we can conclude that it's **the better model to consider deploying** (unless a smaller-footprint model at considerably lower accuracy is preferred). 
-- The fact that a simple logistic regression model is able to have a decent performance considering a complex task such as activity recognition, proves that we should always start with simpler, more interpretable models and only move to more complex ones when they cannot get to the performance level we desire.
+- The fact that a simple **logistic regression** model is able to have **a decent performance** considering a complex task such as activity recognition, proves that **we should always start with simpler, more interpretable models** and only move to more complex ones when they cannot get to the performance level we desire.
 - The confusion matrix shows that upstairs activity is the one most misclassified. **The model confuses upstairs and downstairs activities.** This is expected since the periodicity of the two activities are on-par when the raw time signals are considered. This is also observed and recorded in the original paper. The authors show that considering the two activities as one bucket/class imrpoves the performance of the model considerably. We can expect a similar result here.
+- The confusion matrix shows that the model misclassifies *upstairs* as *downstairs* more than the other way round. This **directional asymmetry** suggests some systematic bias in the data or model. It may be that the upstairs data has more inherent variability compared to downstairs, making it harder for the model to classify. Further root-cause analysis is required to mitigate the model in this regard.  
 - **5-fold cross validation** took about **10 minutes**. **Training the final model** on all of the training set took about **4 minutes**. Inference (evaluation) on the whole of test set (3449 entries) took about 0.6 sec, therefore we can assume the **average inference time** for the model is **~0.2 ms**.
 
 ## 4. Limitations and Next Steps
