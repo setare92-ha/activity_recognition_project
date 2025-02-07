@@ -114,7 +114,7 @@ The kernel size was chosen based on the maximum period present in the time-serie
 ## 5. Resources
 - Data: [Link](https://www.cis.fordham.edu/wisdm/dataset.php)
 - Jupyter Notebook: [Link](https://github.com/setare92-ha/activity_recognition_project/blob/main/main.ipynb)
-- Presentation: WIP
+- Presentation: [Link](https://github.com/setare92-ha/har_using_neural_networks/blob/main/presentation/hajarolasvadi_presentation.pdf)
 
 ## 6. Navigating the Repository
     │   .gitignore
